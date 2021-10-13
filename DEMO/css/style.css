@@ -516,7 +516,7 @@ body{
 
 .about{
     padding: 1.76rem 1.76rem;
-    background: url('/image/about-bt.jpg');
+    background: url('image/about-bt.jpg');
     background-position: center;
     background-size: cover;
     position: relative;
