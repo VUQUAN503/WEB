@@ -86,7 +86,7 @@ $(document).ready(function(){
         $(".box").addClass("active");
         changeContent(i);
         $(".box").css({
-            "background": `url(/image/home-slider-${i++}.jpg)`
+            "background": `url(image/home-slider-${i++}.jpg)`
         });
     }, 6500);
     $(".box .left").click(()=>{
@@ -95,7 +95,7 @@ $(document).ready(function(){
         $(".box").addClass("active");
         changeContent(i);
         $(".box").css({
-            "background": `url(/image/home-slider-${i}.jpg)`
+            "background": `url(image/home-slider-${i}.jpg)`
         });
     })
     $(".box .right").click(()=>{
@@ -104,7 +104,7 @@ $(document).ready(function(){
         $(".box").addClass("active");
         changeContent(i);
         $(".box").css({
-            "background": `url(/image/home-slider-${i}.jpg)`
+            "background": `url(image/home-slider-${i}.jpg)`
         });
     })
     $(window).scroll(function(){
