@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            position: relative;
+        }
+        :root{
+            --count--: 6;
+        }
+        div.box{
+            margin: 50px 50px;
+            height: 48px;
+            position: absolute;
+            width: calc(288px / 6);
+            background: url('Gunner_Black_Run-removebg-preview.png');
+            animation: sprite .7s steps(var(--count--)) infinite;
+        }
+        div.box::before{
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            top: 50%;
+            right: 4%;
+            opacity: 0;
+            z-index: -1;
+            transition: all 2s linear;
+            transform: translateY(-100%);
+            box-shadow: none; /* turn off shadow for all */
+            -moz-box-shadow: none;
+            -webkit-box-shadow: inset 0 0 3px; /* turn on shadow for Chrome & Safari */
+            background-color: rgb(150, 30, 30);
+        }
+
+        @keyframes bullet{
+            0%{
+                left: 50%;
+                opacity: 1;
+            }
+            49.99%{
+                transform: translateX(50vw);
+                opacity: 1;
+            } 50%{
+                opacity: 0;
+            }
+            100%{
+                right: 4%;
+                opacity: 0;
+            }
+        }
+        div.box.active::before{
+            animation: bullet 1.5s linear forwards;
+        }
+    
+        @keyframes sprite{
+            from{
+                background-position: 0;
+            }
+            to{
+                background-position: 288px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+    </div>
+    <script src="/DEMO/JQUERY/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var left = 20;
+            var player = document.querySelector(".box");
+            var dx = 1;
+            var count = 0;
+            setInterval(function(){
+                if(Math.floor(Math.random() * 200) === 11)
+                {
+                    count = 100;
+                    player.style.background = "url('Gunner_Black_Idle-removebg-preview.png')";
+                    player.classList.add("active");
+                }
+                if(count > 0) count--;
+                else if(count === 0){
+                    player.classList.remove("active");
+                    left += dx;
+                    player.style.background = "url('Gunner_Black_Run-removebg-preview.png')";
+                }
+                if(left > 300)
+                {
+                    dx = -dx;
+                    player.style.transform = "rotateY(180deg)";
+                }
+                else if(left < 20)
+                {
+                    dx = -dx;
+                    player.style.transform = "rotateY(360deg)";
+                }
+                player.style.left = `${left}px`;
+            }, 10)
+        })
+    </script>
+</body>
+</html>
